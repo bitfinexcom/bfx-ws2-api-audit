@@ -1,0 +1,34 @@
+{
+  "name": "bfx-ws2-api-audit",
+  "version": "0.0.1",
+  "description": "Bitfinex WS2 API testing utilities",
+  "engines": {
+    "node": ">=7"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitfinexcom/bfx-ws2-api-audit.git"
+  },
+  "keywords": [
+    "bitfinex",
+    "bitcoin",
+    "BTC"
+  ],
+  "author": "Cris Mihalache <cris.m@bitfinex.com> (https://www.bitfinex.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bitfinexcom/bfx-ws2-api-audit/issues"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0",
+    "standard": "^10.0.2"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "bitfinex-api-node": "git+https://github.com/bitfinexcom/bitfinex-api-node.git#master",
+    "debug": "^2.2.0",
+    "lodash": "^4.17.4",
+    "socks-proxy-agent": "^3.0.1"
+  }
+}
