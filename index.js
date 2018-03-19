@@ -10,7 +10,7 @@ const {
   API_KEY_MAKER, API_SECRET_MAKER, API_KEY_TAKER, API_SECRET_TAKER
 } = process.env
 
-const DATA_DELAY = 5 * 1000
+const DATA_DELAY = 7 * 1000
 const INITIAL_MID_PRICE = 30.00 // only used if OB is empty
 const INITIAL_LAST_PRICE = 30.00 // only used if ticker not received
 const SYMBOL = 'tETHUSD'
@@ -26,10 +26,32 @@ const stepTeardownDataset = require('./lib/steps/teardown_dataset')
 const stepDelay = require('./lib/steps/delay')
 const getBFX = require('./lib/util/get_bfx')
 
-const wsM = getBFX(API_KEY_MAKER, API_SECRET_MAKER).ws(2)
-const wsT = getBFX(API_KEY_TAKER, API_SECRET_TAKER).ws(2)
-const dataM = new Dataset(SYMBOL, wsM, 'maker')
-const dataT = new Dataset(SYMBOL, wsT, 'taker')
+// TODO: Break this out on the environment
+const symbols = [
+  'tBTCUSD',
+  'tETHBTC',
+  'tETHUSD',
+  'tIOTUSD',
+  'tIOTBTC',
+  'tIOTETH',
+  'tIFXUSD',
+
+  // Virtual
+  'tBTCEUR',
+  'tBTCJPY',
+  'tIOTEUR'
+]
+
+const bfxM = getBFX(API_KEY_MAKER, API_SECRET_MAKER)
+const bfxT = getBFX(API_KEY_TAKER, API_SECRET_TAKER)
+
+const wsM = bfxM.ws(2)
+const wsT = bfxT.ws(2)
+const restM = bfxM.rest(2)
+const restT = bfxT.rest(2)
+
+const dataM = new Dataset(symbols, wsM, 'maker')
+const dataT = new Dataset(symbols, wsT, 'taker')
 
 const orderTestArgs = {
   symbol: SYMBOL,
@@ -40,6 +62,13 @@ const orderTestArgs = {
 }
 
 runTestSuites([
+  /*require('./lib/tests/virtual_obs')({
+    ...orderTestArgs,
+
+    primaryPair: 'tBTCUSD',
+    virtualPair: 'tBTCJPY'
+  }),*/
+
   require('./lib/tests/limit')(orderTestArgs),
   require('./lib/tests/market')(orderTestArgs),
   require('./lib/tests/stop')(orderTestArgs),
@@ -51,6 +80,8 @@ runTestSuites([
   wsT,
   dataM,
   dataT,
+  restM,
+  restT,
   symbol: SYMBOL,
   amount: AMOUNT,
   dataDelay: DATA_DELAY
