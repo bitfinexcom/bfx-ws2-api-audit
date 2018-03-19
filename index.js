@@ -70,11 +70,11 @@ runTestSuites([
   }),*/
 
   require('./lib/tests/limit')(orderTestArgs),
-  require('./lib/tests/market')(orderTestArgs),
-  require('./lib/tests/stop')(orderTestArgs),
-  require('./lib/tests/stop_limit')(orderTestArgs),
-  require('./lib/tests/fok')(orderTestArgs),
-  require('./lib/tests/trailing_stop')(orderTestArgs)
+  // require('./lib/tests/market')(orderTestArgs),
+  // require('./lib/tests/stop')(orderTestArgs),
+  // require('./lib/tests/stop_limit')(orderTestArgs),
+  // require('./lib/tests/fok')(orderTestArgs),
+  // require('./lib/tests/trailing_stop')(orderTestArgs)
 ], {
   wsM,
   wsT,
