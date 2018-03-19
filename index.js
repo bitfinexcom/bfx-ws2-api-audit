@@ -10,7 +10,7 @@ const {
   API_KEY_MAKER, API_SECRET_MAKER, API_KEY_TAKER, API_SECRET_TAKER
 } = process.env
 
-const DATA_DELAY = 5 * 1000
+const DATA_DELAY = 7 * 1000
 const INITIAL_MID_PRICE = 30.00 // only used if OB is empty
 const INITIAL_LAST_PRICE = 30.00 // only used if ticker not received
 const SYMBOL = 'tETHUSD'
@@ -58,7 +58,7 @@ runTestSuites([
     stepOpenWS(),
     stepSetupDataset(),
     stepAuthWS(),
-    stepDelay(5 * 1000), // wait for chan 0 data to arrive
+    stepDelay(1 * 1000), // wait for chan 0 data to arrive
   ],
 
   after: [
