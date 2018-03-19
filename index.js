@@ -10,7 +10,7 @@ const {
   API_KEY_MAKER, API_SECRET_MAKER, API_KEY_TAKER, API_SECRET_TAKER
 } = process.env
 
-const DATA_DELAY = 7 * 1000
+const DATA_DELAY = 5 * 1000
 const INITIAL_MID_PRICE = 30.00 // only used if OB is empty
 const INITIAL_LAST_PRICE = 30.00 // only used if ticker not received
 const SYMBOL = 'tETHUSD'
@@ -44,6 +44,7 @@ runTestSuites([
   require('./lib/tests/market')(orderTestArgs),
   require('./lib/tests/stop')(orderTestArgs),
   require('./lib/tests/stop_limit')(orderTestArgs),
+  require('./lib/tests/fok')(orderTestArgs),
   require('./lib/tests/trailing_stop')(orderTestArgs)
 ], {
   wsM,
