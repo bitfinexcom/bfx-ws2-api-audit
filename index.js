@@ -10,11 +10,11 @@ const {
   API_KEY_MAKER, API_SECRET_MAKER, API_KEY_TAKER, API_SECRET_TAKER
 } = process.env
 
-const DATA_DELAY = 7 * 1000
-const INITIAL_MID_PRICE = 30.00 // only used if OB is empty
-const INITIAL_LAST_PRICE = 30.00 // only used if ticker not received
-const SYMBOL = 'tETHUSD'
-const AMOUNT = 2
+const DATA_DELAY = 10 * 1000
+const INITIAL_MID_PRICE = 20.265 // only used if OB is empty
+const INITIAL_LAST_PRICE = 20.265 // only used if ticker not received
+const SYMBOL = 'tQTMUSD'
+const AMOUNT = 1
 
 const Dataset = require('./lib/dataset')
 const { runTestSuites } = require('./lib/test_suite')
@@ -28,6 +28,8 @@ const getBFX = require('./lib/util/get_bfx')
 
 // TODO: Break this out on the environment
 const symbols = [
+  'tQTMUSD'
+  /*
   'tBTCUSD',
   'tETHBTC',
   'tETHUSD',
@@ -40,6 +42,7 @@ const symbols = [
   'tBTCEUR',
   'tBTCJPY',
   'tIOTEUR'
+  */
 ]
 
 const bfxM = getBFX(API_KEY_MAKER, API_SECRET_MAKER)
@@ -62,18 +65,21 @@ const orderTestArgs = {
 }
 
 runTestSuites([
-  /*require('./lib/tests/virtual_obs')({
+  // require('./lib/tests/limit')(orderTestArgs),
+
+  /*
+  require('./lib/tests/virtual_obs')({
     ...orderTestArgs,
 
     primaryPair: 'tBTCUSD',
     virtualPair: 'tBTCJPY'
-  }),*/
+  }),
+  */
 
-  require('./lib/tests/limit')(orderTestArgs),
-  // require('./lib/tests/market')(orderTestArgs),
-  // require('./lib/tests/stop')(orderTestArgs),
-  // require('./lib/tests/stop_limit')(orderTestArgs),
-  // require('./lib/tests/fok')(orderTestArgs),
+  require('./lib/tests/market')(orderTestArgs),
+  require('./lib/tests/stop')(orderTestArgs),
+  require('./lib/tests/stop_limit')(orderTestArgs),
+  require('./lib/tests/fok')(orderTestArgs),
   // require('./lib/tests/trailing_stop')(orderTestArgs)
 ], {
   wsM,
