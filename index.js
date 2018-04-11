@@ -11,8 +11,8 @@ const {
 } = process.env
 
 const DATA_DELAY = 10 * 1000
-const INITIAL_MID_PRICE = 20.265 // only used if OB is empty
-const INITIAL_LAST_PRICE = 20.265 // only used if ticker not received
+const INITIAL_MID_PRICE = 13.618 // only used if OB is empty
+const INITIAL_LAST_PRICE = 13.618 // only used if ticker not received
 const SYMBOL = 'tQTMUSD'
 const AMOUNT = 1
 
@@ -28,7 +28,7 @@ const getBFX = require('./lib/util/get_bfx')
 
 // TODO: Break this out on the environment
 const symbols = [
-  'tQTMUSD'
+  'tQTMUSD',
   /*
   'tBTCUSD',
   'tETHBTC',
@@ -65,7 +65,12 @@ const orderTestArgs = {
 }
 
 runTestSuites([
-  // require('./lib/tests/limit')(orderTestArgs),
+  require('./lib/tests/limit')(orderTestArgs),
+  require('./lib/tests/market')(orderTestArgs),
+  require('./lib/tests/stop')(orderTestArgs),
+  require('./lib/tests/fok')(orderTestArgs),
+  require('./lib/tests/stop_limit')(orderTestArgs),
+  require('./lib/tests/trailing_stop')(orderTestArgs),
 
   /*
   require('./lib/tests/virtual_obs')({
@@ -75,12 +80,6 @@ runTestSuites([
     virtualPair: 'tBTCJPY'
   }),
   */
-
-  require('./lib/tests/market')(orderTestArgs),
-  require('./lib/tests/stop')(orderTestArgs),
-  require('./lib/tests/stop_limit')(orderTestArgs),
-  require('./lib/tests/fok')(orderTestArgs),
-  // require('./lib/tests/trailing_stop')(orderTestArgs)
 ], {
   wsM,
   wsT,
