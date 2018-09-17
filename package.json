@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "async": "^2.6.0",
-    "bitfinex-api-node": "git+https://github.com/bitfinexcom/bitfinex-api-node.git#master",
+    "bignumber.js": "^6.0.0",
+    "bitfinex-api-node": "git+https://github.com/f3rno/bitfinex-api-node.git#2-beta-1-release",
     "debug": "^2.2.0",
     "lodash": "^4.17.4",
     "socks-proxy-agent": "^3.0.1"
