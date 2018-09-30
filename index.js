@@ -13,8 +13,8 @@ const {
 const DATA_DELAY = 10 * 1000
 const INITIAL_MID_PRICE = 13.618 // only used if OB is empty
 const INITIAL_LAST_PRICE = 13.618 // only used if ticker not received
-const SYMBOL = 'tQTMUSD'
-const AMOUNT = 1
+const SYMBOL = 'tBTCUSD'
+const AMOUNT = 0.2
 
 const Dataset = require('./lib/dataset')
 const { runTestSuites } = require('./lib/test_suite')
