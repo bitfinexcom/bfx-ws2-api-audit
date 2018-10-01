@@ -2,9 +2,9 @@
 
 require('dotenv').config()
 
-// process.env.DEBUG = 'bfx:ws2-api-audi*'
+process.env.DEBUG = 'bfx:ws2-api-audi*'
 // process.env.DEBUG = 'bfx:ws2-api-audit:test_suite'
-process.env.DEBUG = '*'
+// process.env.DEBUG = '*'
 
 const {
   API_KEY_MAKER, API_SECRET_MAKER, API_KEY_TAKER, API_SECRET_TAKER
