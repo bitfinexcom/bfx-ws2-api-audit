@@ -2,9 +2,9 @@
 
 require('dotenv').config()
 
-// process.env.DEBUG = 'bfx:ws2-api-audi*'
+process.env.DEBUG = 'bfx:ws2-api-audi*'
 // process.env.DEBUG = 'bfx:ws2-api-audit:test_suite'
-process.env.DEBUG = '*'
+// process.env.DEBUG = '*'
 
 const {
   API_KEY_MAKER, API_SECRET_MAKER, API_KEY_TAKER, API_SECRET_TAKER
@@ -13,8 +13,8 @@ const {
 const DATA_DELAY = 10 * 1000
 const INITIAL_MID_PRICE = 13.618 // only used if OB is empty
 const INITIAL_LAST_PRICE = 13.618 // only used if ticker not received
-const SYMBOL = 'tQTMUSD'
-const AMOUNT = 1
+const SYMBOL = 'tBTCUSD'
+const AMOUNT = 0.2
 
 const Dataset = require('./lib/dataset')
 const { runTestSuites } = require('./lib/test_suite')
@@ -28,16 +28,17 @@ const getBFX = require('./lib/util/get_bfx')
 
 // TODO: Break this out on the environment
 const symbols = [
-  'tQTMUSD',
-  /*
   'tBTCUSD',
+  /*
   'tETHBTC',
   'tETHUSD',
   'tIOTUSD',
   'tIOTBTC',
   'tIOTETH',
   'tIFXUSD',
+  */
 
+  /*
   // Virtual
   'tBTCEUR',
   'tBTCJPY',
