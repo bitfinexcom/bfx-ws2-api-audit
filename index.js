@@ -28,16 +28,17 @@ const getBFX = require('./lib/util/get_bfx')
 
 // TODO: Break this out on the environment
 const symbols = [
-  'tQTMUSD',
-  /*
   'tBTCUSD',
+  /*
   'tETHBTC',
   'tETHUSD',
   'tIOTUSD',
   'tIOTBTC',
   'tIOTETH',
   'tIFXUSD',
+  */
 
+  /*
   // Virtual
   'tBTCEUR',
   'tBTCJPY',
